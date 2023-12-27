@@ -1,37 +1,18 @@
-﻿namespace Rick_Morty.Model.Character
+﻿using Models.Model.Base;
+using System.Runtime.CompilerServices;
+
+namespace Rick_Morty.Model.Character
 {
 
-    public class CharacterResult
+    public class CharacterResult : BaseMain
     {
-
-        public Info info { get; set; }
         public List<Character> results { get; set; }
-
-
     }
 
-    public class Info
+
+    public class Character : BaseMovie
     {
 
-
-        public int Count { get; set; }
-        public int Pages { get; set; }
-        public string Next { get; set; }
-        //{
-        //    //get { return Next; }   // get method
-        //    //set { Next = value.Replace("https://rickandmortyapi.com", "http://localhost:7012"); }  // set method
-        //}
-
-
-
-
-        public string Prev { get; set; }
-    }
-    public class Character
-    {
-
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string Status { get; set; }
 
         public string Species { get; set; }
@@ -40,7 +21,8 @@
 
         public Origin Origin { get; set; }
 
-        public Location Location { get; set; }
+        public CharacterLocation Location { get; set; }
+        public List<string> Episode { get; set; }
 
         public string Image { get; set; }
 
@@ -53,7 +35,7 @@
         public string Url { get; set; }
 
     }
-    public class Location
+    public class CharacterLocation
     {
 
 
@@ -61,11 +43,6 @@
         public string Url { get; set; }
     }
 
-    public class Episode
-    {
 
-
-
-    }
 
 }

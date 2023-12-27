@@ -5,18 +5,17 @@ using Rick_Morty.Model.Character;
 namespace Repository
 {
 
-    public interface IWebApiRepository
+    public interface IWebApiCharacterRepository
     {
         public CharacterResult GetAllCharacter();
         public Character GetSingleCharacter(int id);
 
     }
 
-    public class WebApiRepository : IWebApiRepository
+    public class WebApiCharacterRepository : IWebApiCharacterRepository
     {
         const string CharacterUrl = "https://rickandmortyapi.com/api/character";
-        const string LocationUrl = "https://rickandmortyapi.com/api/location";
-        const string EpisodesUrl = "https://rickandmortyapi.com/api/episode";
+
 
         public CharacterResult GetAllCharacter()
         {

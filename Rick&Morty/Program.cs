@@ -11,7 +11,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddScoped<IWebApiRepository, WebApiRepository>();
+builder.Services.AddScoped<IWebApiEpisodeRepository, WebApiEpisodeRepository>();
+builder.Services.AddScoped<IWebApiCharacterRepository, WebApiCharacterRepository>();
+builder.Services.AddScoped<IWebApiLocationRepository, WebApiLocationRepository>();
+
+
 builder.Services.AddScoped<IWebApiService, WebApiService>();
 
 var app = builder.Build();
