@@ -1,4 +1,6 @@
-﻿using Models.Model.Location;
+﻿using Models.Filter;
+using Models.Model.Episode;
+using Models.Model.Location;
 using Models.Model.Repository;
 using Rick_Morty.Model.Character;
 using System;
@@ -15,6 +17,7 @@ namespace Repository
 
         public LocationResult GetAllLocation();
         public Location GetSingleLocation(int id);
+        public LocationResult LocationFilter(LocationFilter filters);
 
     }
     public class WebApiLocationRepository:IWebApiLocationRepository
@@ -44,6 +47,27 @@ namespace Repository
 
             return result;
 
+        }
+        public LocationResult LocationFilter(LocationFilter filters)
+        {
+            string url = LocationUrl + "/";
+            if (!string.IsNullOrEmpty(filters.Name))
+                url += "?name=" + filters.Name;
+            if (!string.IsNullOrEmpty(filters.Type))
+                url += "?type=" + filters.Type;
+
+            if (!string.IsNullOrEmpty(filters.Dimension))
+                url += "?dimension=" + filters.Dimension;
+
+
+            WebApiHelper helper = new WebApiHelper();
+            var result = helper.GenereteResult<LocationResult>(new GenerateResultParameters() { Url = url });
+
+
+            //var next = result.info.Next;
+            //next = result.info.Next.Replace("https://rickandmortyapi.com", "http://localhost:7012");
+            //result.info.Next = next;
+            return result;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Models.Model.Base;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,10 @@ namespace Models.Model.Episode
     }
     public class Episode:BaseMovie
     {
-        public string Air_Date { get; set; }
+        [JsonProperty("AirDate")]
+        public string AirDate { get; set; }
 
+        [JsonProperty("Episode")]
         public string EpisodeNumber { get; set; }
 
         List<string> Characters { get; set; }

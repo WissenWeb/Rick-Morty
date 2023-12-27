@@ -1,6 +1,7 @@
-﻿using Models.Model.Repository;
+﻿using Models.Filter;
+using Models.Model.Repository;
 using Rick_Morty.Model.Character;
-
+using System.IO.MemoryMappedFiles;
 
 namespace Repository
 {
@@ -9,6 +10,7 @@ namespace Repository
     {
         public CharacterResult GetAllCharacter();
         public Character GetSingleCharacter(int id);
+        public CharacterResult CharacterFilter(CharacterFilter filters);
 
     }
 
@@ -39,6 +41,30 @@ namespace Repository
 
             return result;
 
+        }
+
+        public CharacterResult CharacterFilter(CharacterFilter filters)
+        {
+            string url = CharacterUrl+"/";
+            if (!string.IsNullOrEmpty(filters.Name))
+                url += "?name=" + filters.Name;
+            if(!string.IsNullOrEmpty(filters.Gender))
+                url += "?gender=" + filters.Gender;
+            if (!string.IsNullOrEmpty(filters.Status))
+                url += "?status=" + filters.Status;
+            if (!string.IsNullOrEmpty(filters.Type))
+                url += "?type=" + filters.Type;
+            if (!string.IsNullOrEmpty(filters.Species))
+                url += "?species=" + filters.Species;
+
+            WebApiHelper helper = new WebApiHelper();
+            var result = helper.GenereteResult<CharacterResult>(new GenerateResultParameters() { Url = url });
+
+
+            //var next = result.info.Next;
+            //next = result.info.Next.Replace("https://rickandmortyapi.com", "http://localhost:7012");
+            //result.info.Next = next;
+            return result;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Models.Model.Episode;
+﻿using Models.Filter;
+using Models.Model.Episode;
 using Models.Model.Location;
 using Repository;
 using Rick_Morty.Model.Character;
@@ -19,6 +20,8 @@ namespace Service
             _webApiLocationRepository = webApiLocationRepository;
             _webapiEpisodeRepository = webapiEpisodeRepository;
         }
+
+        #region Character
         public CharacterResult GetAllCharacter()
         {
 
@@ -32,7 +35,16 @@ namespace Service
             var character = _webapiCharacterRepository.GetSingleCharacter(id);
             return character;
         }
+        public CharacterResult CharacterFilter(CharacterFilter filter)
+        {
 
+            var characterResult = _webapiCharacterRepository.CharacterFilter(filter);
+            return characterResult;
+        }
+
+        #endregion
+
+        #region Location
         public LocationResult GetAllLocation()
         {
 
@@ -47,6 +59,14 @@ namespace Service
 
         }
 
+        public LocationResult LocationFilter(LocationFilter filter)
+        {
+            var locationResult = _webApiLocationRepository.LocationFilter(filter);
+            return locationResult;
+        }
+        #endregion
+
+        #region Episode
         public EpisodeResult GetAllEpisode()
         {
             var episodeResult = _webapiEpisodeRepository.GetAllEpisode();
@@ -58,6 +78,14 @@ namespace Service
             return episode;
         }
 
+        public EpisodeResult EpisodeFilter(EpisodeFilter filter)
+        {
+
+            var episodeResult = _webapiEpisodeRepository.EpisodeFilter(filter);
+            return episodeResult;
+
+        }
+        #endregion
     }
     public interface IWebApiService
     {
@@ -68,6 +96,10 @@ namespace Service
         public LocationResult GetAllLocation();
         public EpisodeResult GetAllEpisode();
         public Episode GetSingleEpisode(int id);
+        public CharacterResult CharacterFilter(CharacterFilter filter);
+        public LocationResult LocationFilter(LocationFilter filter);
+
+        public EpisodeResult EpisodeFilter(EpisodeFilter filter);
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.Filter;
 using Service;
 
 namespace Rick_Morty.Controllers
@@ -27,5 +28,14 @@ namespace Rick_Morty.Controllers
 
             return Ok(character);
         }
+        [HttpPost]
+        [Route("Filter")]
+        public IActionResult Get(EpisodeFilter filter)
+        {
+            var episodeResult = _webapiService.EpisodeFilter(filter);
+
+            return Ok(episodeResult);
+        }
+
     }
 }

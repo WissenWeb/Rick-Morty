@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.Filter;
 using Service;
 
 namespace Rick_Morty.Controllers
@@ -31,6 +32,15 @@ namespace Rick_Morty.Controllers
             var character = _webapiService.GetSingleCharacter(id);
 
             return Ok(character);
+        }
+
+        [HttpPost]
+        [Route("Filter")]
+        public IActionResult Get(CharacterFilter filter)
+        {
+            var characterResult = _webapiService.CharacterFilter(filter);
+         
+            return Ok(characterResult);
         }
     }
 }
