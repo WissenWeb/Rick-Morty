@@ -11,6 +11,7 @@ namespace Repository
         public CharacterResult GetAllCharacter();
         public Character GetSingleCharacter(int id);
         public CharacterResult CharacterFilter(CharacterFilter filters);
+        public CharacterResult GetMultipleCharacter(List<int> ids);
 
     }
 
@@ -42,7 +43,16 @@ namespace Repository
             return result;
 
         }
+        public CharacterResult GetMultipleCharacter(List<int> ids)
+        {
+            var url = CharacterUrl + "/" + ids;
 
+            WebApiHelper helper = new WebApiHelper();
+            var result = helper.GenereteResult<CharacterResult>(new GenerateResultParameters { Url = url });
+
+            return result;
+
+        }
         public CharacterResult CharacterFilter(CharacterFilter filters)
         {
             string url = CharacterUrl+"/";

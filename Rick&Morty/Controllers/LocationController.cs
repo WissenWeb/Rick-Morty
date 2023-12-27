@@ -18,8 +18,6 @@ namespace Rick_Morty.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-
-
             var character = _webapiService.GetAllLocation();
             return Ok(character);
         }

@@ -42,5 +42,14 @@ namespace Rick_Morty.Controllers
          
             return Ok(characterResult);
         }
+        [HttpPost]
+        [Route("Multiple")]
+        public IActionResult Get(List<int> ids)
+        {
+           var characterResult= _webapiService.GetMultipleCharacter(ids);
+            return Ok(characterResult);
+        }
+
+        //Pageleri getiren endpointler yazalım
     }
 }

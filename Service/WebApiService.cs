@@ -42,6 +42,12 @@ namespace Service
             return characterResult;
         }
 
+        public CharacterResult GetMultipleCharacter(List<int> ids)
+        {
+
+            var characterResult = _webapiCharacterRepository.GetMultipleCharacter(ids);
+            return characterResult;
+        }
         #endregion
 
         #region Location
@@ -100,6 +106,8 @@ namespace Service
         public LocationResult LocationFilter(LocationFilter filter);
 
         public EpisodeResult EpisodeFilter(EpisodeFilter filter);
+
+        public CharacterResult GetMultipleCharacter(List<int> ids);
 
 
     }
