@@ -37,5 +37,13 @@ namespace Rick_Morty.Controllers
 
             return Ok(locationResult);
         }
+
+        [HttpPost]
+        [Route("Multiple")]
+        public IActionResult Get(List<int> ids)
+        {
+            var locationResult = _webapiService.GetMultipleLocation(ids);
+            return Ok(locationResult);
+        }
     }
 }
