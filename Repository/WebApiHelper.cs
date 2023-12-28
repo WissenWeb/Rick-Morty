@@ -1,6 +1,7 @@
 ﻿using Models.Model.Repository;
 using Newtonsoft.Json;
 using RestSharp;
+using Rick_Morty.Model.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Repository
     public class WebApiHelper
     {
 
-        
+      
 
         public T GenereteResult<T>(GenerateResultParameters parameters)
         {
@@ -23,8 +24,8 @@ namespace Repository
             var result = cli.Execute(request);
             T t = JsonConvert.DeserializeObject<T>(result.Content);
             return t;
-            
-            
+
+
         }
     }
 }

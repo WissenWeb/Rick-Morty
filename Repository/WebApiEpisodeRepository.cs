@@ -1,5 +1,6 @@
 ﻿using Models.Filter;
 using Models.Model.Episode;
+using Models.Model.Location;
 using Models.Model.Repository;
 using Rick_Morty.Model.Character;
 using System;
@@ -15,6 +16,7 @@ namespace Repository
         public EpisodeResult GetAllEpisode();
         public Episode GetSingleEpisode(int id);
         public EpisodeResult EpisodeFilter(EpisodeFilter filters);
+        public List<Episode> GetMultipleEpisode(List<int> ids);
 
 
     }
@@ -63,6 +65,18 @@ namespace Repository
             //next = result.info.Next.Replace("https://rickandmortyapi.com", "http://localhost:7012");
             //result.info.Next = next;
             return result;
+        }
+        public List<Episode> GetMultipleEpisode(List<int> ids)
+        {
+
+
+            var url = EpisodeUrl + "/" + string.Join(",", ids);
+
+            WebApiHelper helper = new WebApiHelper();
+
+            var result = helper.GenereteResult<List<Episode>>(new GenerateResultParameters { Url = url });
+            return result;
+
         }
     }
 }

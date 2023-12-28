@@ -42,7 +42,7 @@ namespace Service
             return characterResult;
         }
 
-        public CharacterResult GetMultipleCharacter(List<int> ids)
+        public List<Character> GetMultipleCharacter(List<int> ids)
         {
 
             var characterResult = _webapiCharacterRepository.GetMultipleCharacter(ids);
@@ -84,10 +84,25 @@ namespace Service
             return episode;
         }
 
+        public List<Location> GetMultipleLocation(List<int> ids)
+        {
+
+            var locationResult = _webApiLocationRepository.GetMultipleLocation(ids);
+            return locationResult;
+
+        }
         public EpisodeResult EpisodeFilter(EpisodeFilter filter)
         {
 
             var episodeResult = _webapiEpisodeRepository.EpisodeFilter(filter);
+            return episodeResult;
+
+        }
+        public List<Episode> GetMultipleEpisode(List<int> ids)
+        {
+
+
+            var episodeResult = _webapiEpisodeRepository.GetMultipleEpisode(ids);
             return episodeResult;
 
         }
@@ -107,7 +122,9 @@ namespace Service
 
         public EpisodeResult EpisodeFilter(EpisodeFilter filter);
 
-        public CharacterResult GetMultipleCharacter(List<int> ids);
+        public List<Character> GetMultipleCharacter(List<int> ids);
+        public List<Location> GetMultipleLocation(List<int> ids);
+        public List<Episode> GetMultipleEpisode(List<int> ids);
 
 
     }

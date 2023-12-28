@@ -3,7 +3,11 @@ using System.Runtime.CompilerServices;
 
 namespace Rick_Morty.Model.Character
 {
+    public class MultipleCharacter
+    {
+        public List<Character> Character { get; set; }
 
+    }
     public class CharacterResult : BaseMain
     {
         public List<Character> results { get; set; }

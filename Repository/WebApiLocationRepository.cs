@@ -18,6 +18,7 @@ namespace Repository
         public LocationResult GetAllLocation();
         public Location GetSingleLocation(int id);
         public LocationResult LocationFilter(LocationFilter filters);
+        public List<Location> GetMultipleLocation(List<int> ids);
 
     }
     public class WebApiLocationRepository:IWebApiLocationRepository
@@ -45,6 +46,18 @@ namespace Repository
             WebApiHelper helper = new WebApiHelper();
             var result = helper.GenereteResult<Location>(new GenerateResultParameters { Url = url });
 
+            return result;
+
+        }
+
+        public List<Location> GetMultipleLocation(List<int> ids)
+        {
+
+            var url = LocationUrl + "/" + string.Join(",", ids);
+
+            WebApiHelper helper = new WebApiHelper();
+
+            var result = helper.GenereteResult<List<Location>>(new GenerateResultParameters { Url = url });
             return result;
 
         }

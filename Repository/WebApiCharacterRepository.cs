@@ -11,7 +11,7 @@ namespace Repository
         public CharacterResult GetAllCharacter();
         public Character GetSingleCharacter(int id);
         public CharacterResult CharacterFilter(CharacterFilter filters);
-        public CharacterResult GetMultipleCharacter(List<int> ids);
+        public List<Character> GetMultipleCharacter(List<int> ids);
 
     }
 
@@ -23,7 +23,7 @@ namespace Repository
         public CharacterResult GetAllCharacter()
         {
             WebApiHelper helper = new WebApiHelper();
-            var result = helper.GenereteResult<CharacterResult>(new GenerateResultParameters() { Url=CharacterUrl});
+            var result = helper.GenereteResult<CharacterResult>(new GenerateResultParameters() { Url = CharacterUrl });
 
 
             //var next = result.info.Next;
@@ -35,30 +35,31 @@ namespace Repository
         {
 
 
-            var url = CharacterUrl+"/"+id;
+            var url = CharacterUrl + "/" + id;
 
             WebApiHelper helper = new WebApiHelper();
-            var result = helper.GenereteResult<Character>(new GenerateResultParameters {  Url=url});
+            var result = helper.GenereteResult<Character>(new GenerateResultParameters { Url = url });
 
             return result;
 
         }
-        public CharacterResult GetMultipleCharacter(List<int> ids)
+        public List<Character> GetMultipleCharacter(List<int> ids)
         {
-            var url = CharacterUrl + "/" + ids;
+
+            var url = CharacterUrl + "/" + string.Join(",", ids);
 
             WebApiHelper helper = new WebApiHelper();
-            var result = helper.GenereteResult<CharacterResult>(new GenerateResultParameters { Url = url });
 
+            var result = helper.GenereteResult<List<Character>>(new GenerateResultParameters { Url = url });
             return result;
 
         }
         public CharacterResult CharacterFilter(CharacterFilter filters)
         {
-            string url = CharacterUrl+"/";
+            string url = CharacterUrl + "/";
             if (!string.IsNullOrEmpty(filters.Name))
                 url += "?name=" + filters.Name;
-            if(!string.IsNullOrEmpty(filters.Gender))
+            if (!string.IsNullOrEmpty(filters.Gender))
                 url += "?gender=" + filters.Gender;
             if (!string.IsNullOrEmpty(filters.Status))
                 url += "?status=" + filters.Status;
@@ -76,5 +77,7 @@ namespace Repository
             //result.info.Next = next;
             return result;
         }
+
+
     }
 }
