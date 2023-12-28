@@ -49,6 +49,13 @@ namespace Rick_Morty.Controllers
            var characterResult= _webapiService.GetMultipleCharacter(ids);
             return Ok(characterResult);
         }
+        [HttpGet]
+        [Route("Page")]
+        public IActionResult Page(int id)
+        {
+            var characterResult = _webapiService.GetCharacterPage(id);
+            return Ok(characterResult);
+        }
 
         //Pageleri getiren endpointler yazalım
     }

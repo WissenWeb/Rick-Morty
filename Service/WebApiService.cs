@@ -106,6 +106,26 @@ namespace Service
             return episodeResult;
 
         }
+        public CharacterResult GetCharacterPage(int page)
+        {
+
+            var characterResult =_webapiCharacterRepository.GetCharacterPage(page);
+            return characterResult;
+
+        }
+        public EpisodeResult GetEpisodePage(int page)
+        {
+            var episodeResult = _webapiEpisodeRepository.GetEpisodePage(page);
+            return episodeResult;
+
+        }
+        public LocationResult GetLocationPage(int page)
+        {
+
+
+            var locationResult = _webApiLocationRepository.GetLocationPage(page);
+            return locationResult;
+        }
         #endregion
     }
     public interface IWebApiService
@@ -125,6 +145,10 @@ namespace Service
         public List<Character> GetMultipleCharacter(List<int> ids);
         public List<Location> GetMultipleLocation(List<int> ids);
         public List<Episode> GetMultipleEpisode(List<int> ids);
+        public CharacterResult GetCharacterPage(int page);
+        public EpisodeResult GetEpisodePage(int page);
+        public LocationResult GetLocationPage(int page);
+
 
 
     }

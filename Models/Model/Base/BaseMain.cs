@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Model.Base
 {
-    public  class BaseMain
+    public class BaseMain
     {
         public Info Info { get; set; }
 
@@ -17,14 +17,9 @@ namespace Models.Model.Base
 
         public int Count { get; set; }
         public int Pages { get; set; }
+
         public string Next { get; set; }
-        //{
-        //    //get { return Next; }   // get method
-        //    //set { Next = value.Replace("https://rickandmortyapi.com", "http://localhost:7012"); }  // set method
-        //}
-
         public string Prev { get; set; }
+
     }
-
-
 }

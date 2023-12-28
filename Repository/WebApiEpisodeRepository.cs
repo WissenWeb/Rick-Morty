@@ -17,6 +17,7 @@ namespace Repository
         public Episode GetSingleEpisode(int id);
         public EpisodeResult EpisodeFilter(EpisodeFilter filters);
         public List<Episode> GetMultipleEpisode(List<int> ids);
+        public EpisodeResult GetEpisodePage(int page);
 
 
     }
@@ -75,6 +76,17 @@ namespace Repository
             WebApiHelper helper = new WebApiHelper();
 
             var result = helper.GenereteResult<List<Episode>>(new GenerateResultParameters { Url = url });
+            return result;
+
+        }
+        public EpisodeResult GetEpisodePage(int page)
+        {
+
+            var url = EpisodeUrl + "/?page=" + page;
+
+            WebApiHelper helper = new WebApiHelper();
+
+            var result = helper.GenereteResult<EpisodeResult>(new GenerateResultParameters { Url = url });
             return result;
 
         }

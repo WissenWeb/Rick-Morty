@@ -36,12 +36,19 @@ namespace Rick_Morty.Controllers
 
             return Ok(episodeResult);
         }
-
         [HttpPost]
         [Route("Multiple")]
         public IActionResult Get(List<int> ids)
         {
             var episodeResult = _webapiService.GetMultipleEpisode(ids);
+            return Ok(episodeResult);
+        }
+
+        [HttpGet]
+        [Route("Page")]
+        public IActionResult Page(int id)
+        {
+            var episodeResult = _webapiService.GetEpisodePage(id);
             return Ok(episodeResult);
         }
 

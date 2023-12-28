@@ -45,5 +45,13 @@ namespace Rick_Morty.Controllers
             var locationResult = _webapiService.GetMultipleLocation(ids);
             return Ok(locationResult);
         }
+
+        [HttpGet]
+        [Route("Page")]
+        public IActionResult Page(int id)
+        {
+            var locationResult = _webapiService.GetLocationPage(id);
+            return Ok(locationResult);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Repository
         public Location GetSingleLocation(int id);
         public LocationResult LocationFilter(LocationFilter filters);
         public List<Location> GetMultipleLocation(List<int> ids);
-
+        public LocationResult GetLocationPage(int page);
     }
     public class WebApiLocationRepository:IWebApiLocationRepository
     {
@@ -81,6 +81,17 @@ namespace Repository
             //next = result.info.Next.Replace("https://rickandmortyapi.com", "http://localhost:7012");
             //result.info.Next = next;
             return result;
+        }
+        public LocationResult GetLocationPage(int page)
+        {
+
+            var url = LocationUrl + "/?page=" + page;
+
+            WebApiHelper helper = new WebApiHelper();
+
+            var result = helper.GenereteResult<LocationResult>(new GenerateResultParameters { Url = url });
+            return result;
+
         }
     }
 }
