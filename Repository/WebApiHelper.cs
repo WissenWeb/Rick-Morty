@@ -1,5 +1,6 @@
 ﻿using Models.Model.Repository;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using Rick_Morty.Model.Character;
 using System;
@@ -22,6 +23,14 @@ namespace Repository
             RestRequest request = new RestRequest();
             request.Method = Method.Get;
             var result = cli.Execute(request);
+
+
+            // Page alanını bu şekilde manupule edebilirsiniz!!!!
+            //JObject obj = JObject.Parse(result.Content);
+            //string next = (string)obj["info"]["next"];
+            //next = next.Replace("https://rickandmortyapi.com", "http://localhost:7012");
+
+
             T t = JsonConvert.DeserializeObject<T>(result.Content);
             return t;
 
